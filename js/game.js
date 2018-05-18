@@ -30,7 +30,7 @@ document.onreadystatechange = function () {
         var itemLayer = game.createLayer('items');
 
         var cow = itemLayer.createEntity();
-        cow.pos = { x: 815, y: 375 };
+        cow.pos = { x: 1060, y: 840 };
         cow.size = { width: 45, height: 45 };
         cow.asset = new PixelJS.AnimatedSprite();
         cow.asset.prepare({
