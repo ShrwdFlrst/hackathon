@@ -42,13 +42,13 @@ document.onreadystatechange = function () {
         });
 
         var horse = itemLayer.createEntity();
-        horse.pos = { x: 1520, y: 245 };
-        horse.size = { width: 45, height: 45 };
+        horse.pos = { x: 1460, y: 155 };
+        horse.size = { width: 150, height: 150 };
         horse.asset = new PixelJS.AnimatedSprite();
         horse.asset.prepare({
-            name: 'horse.png',
-            frames: 4,
-            rows: 3,
+            name: 'horse9.png',
+            frames: 1,
+            rows: 1,
             speed: 160,
             defaultFrame: 0
         });
