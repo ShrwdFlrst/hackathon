@@ -41,6 +41,19 @@ document.onreadystatechange = function () {
             defaultFrame: 0
         });
 
+
+        var bee = itemLayer.createEntity();
+        bee.pos = { x: 752, y: 330 };
+        bee.size = { width: 150, height: 150 };
+        bee.asset = new PixelJS.AnimatedSprite();
+        bee.asset.prepare({
+            name: 'bee.png',
+            frames: 1,
+            rows: 1,
+            speed: 160,
+            defaultFrame: 0
+        });
+
         var horse = itemLayer.createEntity();
         horse.pos = { x: 1460, y: 155 };
         horse.size = { width: 150, height: 150 };
@@ -170,6 +183,9 @@ document.onreadystatechange = function () {
         var horseSound = game.createSound('horse');
         horseSound.prepare({ name: 'horse.mp3' });
 
+        var beeSound = game.createSound('bee');
+        beeSound.prepare({ name: 'bee.mp3' });
+
 
         player.onCollide(function (entity) {
             console.log(entity);
@@ -187,6 +203,10 @@ document.onreadystatechange = function () {
 
             if (entity === bounce) {
                 bounceSound.play();
+            }
+
+            if (entity === bee) {
+                beeSound.play();
             }
 
             if (entity === coin) {
@@ -215,6 +235,7 @@ document.onreadystatechange = function () {
         itemLayer.registerCollidable(horse);
         itemLayer.registerCollidable(mary);
         itemLayer.registerCollidable(bounce);
+        itemLayer.registerCollidable(bee);
 
         var showPosition = function(){
             scoreLayer.redraw = true;
