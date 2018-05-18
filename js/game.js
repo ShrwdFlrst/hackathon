@@ -30,7 +30,7 @@ document.onreadystatechange = function () {
         var itemLayer = game.createLayer('items');
 
         var cow = itemLayer.createEntity();
-        cow.pos = { x: 400, y: 420 };
+        cow.pos = { x: 815, y: 375 };
         cow.size = { width: 45, height: 45 };
         cow.asset = new PixelJS.AnimatedSprite();
         cow.asset.prepare({
@@ -42,7 +42,7 @@ document.onreadystatechange = function () {
         });
 
         var horse = itemLayer.createEntity();
-        horse.pos = { x: 274, y: 420 };
+        horse.pos = { x: 1520, y: 245 };
         horse.size = { width: 45, height: 45 };
         horse.asset = new PixelJS.AnimatedSprite();
         horse.asset.prepare({
@@ -54,7 +54,7 @@ document.onreadystatechange = function () {
         });
 
         var mary = itemLayer.createEntity();
-        mary.pos = { x: 450, y: 320 };
+        mary.pos = { x: 1092, y: 885 };
         mary.size = { width: 45, height: 45 };
         mary.asset = new PixelJS.AnimatedSprite();
         mary.asset.prepare({
@@ -66,8 +66,8 @@ document.onreadystatechange = function () {
         });
 
         var bounce = itemLayer.createEntity();
-        bounce.pos = { x: 450, y: 420 };
-        bounce.size = { width: 45, height: 45 };
+        bounce.pos = { x: 1452, y: 458 };
+        bounce.size = { width: 65, height: 200 };
         bounce.asset = new PixelJS.AnimatedSprite();
         bounce.asset.prepare({
             name: 'bounce4.png',
@@ -80,9 +80,9 @@ document.onreadystatechange = function () {
         var playerLayer = game.createLayer('players');
         var player = new PixelJS.Player();
         player.addToLayer(playerLayer);
-        player.pos = { x: 354, y: 363 };
+        player.pos = { x: 324, y: 798 };
         player.size = { width: 32, height: 32 };
-        player.velocity = { x: 100, y: 100 };
+        player.velocity = { x: 375, y: 375 };
         player.asset = new PixelJS.AnimatedSprite();
         player.asset.prepare({
             name: 'char2.png',
@@ -93,7 +93,7 @@ document.onreadystatechange = function () {
         });
 
         var coin = itemLayer.createEntity();
-        coin.pos = { x: 400, y: 150 };
+        coin.pos = { x: -400, y: 150 };
         coin.size = { width: 12, height: 16 };
         coin.asset = new PixelJS.AnimatedSprite();
         coin.asset.prepare({
@@ -134,6 +134,18 @@ document.onreadystatechange = function () {
         maryBubble.asset = new PixelJS.AnimatedSprite();
         maryBubble.asset.prepare({
             name: 'speech_mary.png',
+            frames: 1,
+            rows: 1,
+            speed: 160,
+            defaultFrame: 0
+        });
+
+        var bounceBubble = itemLayer.createEntity();
+        bounceBubble.pos = { x: -200, y: -200 };
+        bounceBubble.size = { width: 12, height: 16 };
+        bounceBubble.asset = new PixelJS.AnimatedSprite();
+        bounceBubble.asset.prepare({
+            name: 'speech_bounce.png',
             frames: 1,
             rows: 1,
             speed: 160,
@@ -211,7 +223,7 @@ document.onreadystatechange = function () {
                 50,
                 50,
                 '14pt "Trebuchet MS", Helvetica, sans-serif',
-                '#FFFFFF',
+                '#000000',
                 'left'
             );
         };
@@ -236,9 +248,15 @@ document.onreadystatechange = function () {
             }
 
             if (player.collidesWith(mary)) {
-                maryBubble.pos = { x: mary.pos.x - 50, y: mary.pos.y - 85 };
+                maryBubble.pos = { x: mary.pos.x - 50, y: mary.pos.y - 185 };
             } else {
                 maryBubble.pos = { x: -200, y: -200 };
+            }
+
+            if (player.collidesWith(bounce)) {
+                bounceBubble.pos = { x: bounce.pos.x + 25, y: bounce.pos.y - 55 };
+            } else {
+                bounceBubble.pos = { x: -200, y: -200 };
             }
         });
     }
