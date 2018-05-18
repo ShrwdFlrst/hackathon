@@ -54,11 +54,11 @@ document.onreadystatechange = function () {
         });
 
         var mary = itemLayer.createEntity();
-        mary.pos = { x: 1092, y: 885 };
-        mary.size = { width: 45, height: 45 };
+        mary.pos = { x: 318, y: 700 };
+        mary.size = { width: 150, height: 160 };
         mary.asset = new PixelJS.AnimatedSprite();
         mary.asset.prepare({
-            name: 'mary.png',
+            name: 'mary-02.png',
             frames: 3,
             rows: 1,
             speed: 160,
@@ -80,7 +80,7 @@ document.onreadystatechange = function () {
         var playerLayer = game.createLayer('players');
         var player = new PixelJS.Player();
         player.addToLayer(playerLayer);
-        player.pos = { x: 324, y: 798 };
+        player.pos = { x: 715, y: 715 };
         player.size = { width: 150, height: 150 };
         player.velocity = { x: 375, y: 375 };
         player.asset = new PixelJS.AnimatedSprite();
