@@ -21,7 +21,7 @@ document.onreadystatechange = function () {
             //     width: 800,
             //     height: 600
             // }
-            name: 'map7.png',
+            name: 'map2.png',
             size: {
                 width: 2560,
                 height: 1600
@@ -60,6 +60,18 @@ document.onreadystatechange = function () {
         mary.asset.prepare({
             name: 'mary.png',
             frames: 3,
+            rows: 1,
+            speed: 160,
+            defaultFrame: 0
+        });
+
+        var bounce = itemLayer.createEntity();
+        bounce.pos = { x: 450, y: 420 };
+        bounce.size = { width: 45, height: 45 };
+        bounce.asset = new PixelJS.AnimatedSprite();
+        bounce.asset.prepare({
+            name: 'bounce4.png',
+            frames: 5,
             rows: 1,
             speed: 160,
             defaultFrame: 0
@@ -140,6 +152,9 @@ document.onreadystatechange = function () {
         var marySound = game.createSound('mary');
         marySound.prepare({ name: 'mary.mp3' });
 
+        var bounceSound = game.createSound('bounce');
+        bounceSound.prepare({ name: 'bounce.mp3' });
+
         var horseSound = game.createSound('horse');
         horseSound.prepare({ name: 'horse.mp3' });
 
@@ -156,6 +171,10 @@ document.onreadystatechange = function () {
 
             if (entity === mary) {
                 marySound.play();
+            }
+
+            if (entity === bounce) {
+                bounceSound.play();
             }
 
             if (entity === coin) {
@@ -183,6 +202,7 @@ document.onreadystatechange = function () {
         itemLayer.registerCollidable(cow);
         itemLayer.registerCollidable(horse);
         itemLayer.registerCollidable(mary);
+        itemLayer.registerCollidable(bounce);
 
         var showPosition = function(){
             scoreLayer.redraw = true;
