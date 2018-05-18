@@ -31,12 +31,12 @@ document.onreadystatechange = function () {
 
         var cow = itemLayer.createEntity();
         cow.pos = { x: 1060, y: 840 };
-        cow.size = { width: 45, height: 45 };
+        cow.size = { width: 150, height: 150 };
         cow.asset = new PixelJS.AnimatedSprite();
         cow.asset.prepare({
-            name: 'cow4.png',
+            name: 'cow10.png',
             frames: 1,
-            rows: 2,
+            rows: 1,
             speed: 160,
             defaultFrame: 0
         });
