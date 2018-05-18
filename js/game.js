@@ -10,7 +10,6 @@ document.onreadystatechange = function () {
             height: HEIGHT
         });
 
-
         var backgroundLayer = game.createLayer('background');
         var grass = backgroundLayer.createEntity();
         backgroundLayer.static = true;
@@ -32,7 +31,7 @@ document.onreadystatechange = function () {
 
         var cow = itemLayer.createEntity();
         cow.pos = { x: 400, y: 420 };
-        cow.size = { width: 30, height: 30 };
+        cow.size = { width: 45, height: 45 };
         cow.asset = new PixelJS.AnimatedSprite();
         cow.asset.prepare({
             name: 'cow.png',
@@ -43,13 +42,25 @@ document.onreadystatechange = function () {
         });
 
         var horse = itemLayer.createEntity();
-        horse.pos = { x: 470, y: 320 };
-        horse.size = { width: 30, height: 30 };
+        horse.pos = { x: 274, y: 420 };
+        horse.size = { width: 45, height: 45 };
         horse.asset = new PixelJS.AnimatedSprite();
         horse.asset.prepare({
             name: 'horse.png',
             frames: 4,
             rows: 3,
+            speed: 160,
+            defaultFrame: 0
+        });
+
+        var mary = itemLayer.createEntity();
+        mary.pos = { x: 450, y: 320 };
+        mary.size = { width: 45, height: 45 };
+        mary.asset = new PixelJS.AnimatedSprite();
+        mary.asset.prepare({
+            name: 'mary.png',
+            frames: 3,
+            rows: 1,
             speed: 160,
             defaultFrame: 0
         });
@@ -81,6 +92,41 @@ document.onreadystatechange = function () {
             defaultFrame: 0
         });
 
+        var horseBubble = itemLayer.createEntity();
+        horseBubble.pos = { x: -200, y: -200 };
+        horseBubble.size = { width: 12, height: 16 };
+        horseBubble.asset = new PixelJS.AnimatedSprite();
+        horseBubble.asset.prepare({
+            name: 'speech_horse.png',
+            frames: 1,
+            rows: 1,
+            speed: 160,
+            defaultFrame: 0
+        });
+
+        var cowBubble = itemLayer.createEntity();
+        cowBubble.pos = { x: -200, y: -200 };
+        cowBubble.size = { width: 12, height: 16 };
+        cowBubble.asset = new PixelJS.AnimatedSprite();
+        cowBubble.asset.prepare({
+            name: 'speech_cow.png',
+            frames: 1,
+            rows: 1,
+            speed: 160,
+            defaultFrame: 0
+        });
+
+        var maryBubble = itemLayer.createEntity();
+        maryBubble.pos = { x: -200, y: -200 };
+        maryBubble.size = { width: 12, height: 16 };
+        maryBubble.asset = new PixelJS.AnimatedSprite();
+        maryBubble.asset.prepare({
+            name: 'speech_mary.png',
+            frames: 1,
+            rows: 1,
+            speed: 160,
+            defaultFrame: 0
+        });
 
         var collectSound = game.createSound('collect');
         collectSound.prepare({ name: 'coin.mp3' });
@@ -91,6 +137,9 @@ document.onreadystatechange = function () {
         var cowSound = game.createSound('cow');
         cowSound.prepare({ name: 'cow.mp3' });
 
+        var marySound = game.createSound('mary');
+        marySound.prepare({ name: 'mary.mp3' });
+
         var horseSound = game.createSound('horse');
         horseSound.prepare({ name: 'horse.mp3' });
 
@@ -99,12 +148,14 @@ document.onreadystatechange = function () {
             console.log(entity);
             if (entity === horse) {
                 horseSound.play();
-                // horse.delete();
             }
 
             if (entity === cow) {
                 cowSound.play();
-                // horse.delete();
+            }
+
+            if (entity === mary) {
+                marySound.play();
             }
 
             if (entity === coin) {
@@ -131,6 +182,7 @@ document.onreadystatechange = function () {
         itemLayer.registerCollidable(coin);
         itemLayer.registerCollidable(cow);
         itemLayer.registerCollidable(horse);
+        itemLayer.registerCollidable(mary);
 
         var showPosition = function(){
             scoreLayer.redraw = true;
@@ -151,6 +203,23 @@ document.onreadystatechange = function () {
         game.on('keyUp', showPosition);
 
         game.loadAndRun(function (elapsedTime, dt) {
+            if (player.collidesWith(horse)) {
+                horseBubble.pos = { x: horse.pos.x - 50, y: horse.pos.y - 85 };
+            } else {
+                horseBubble.pos = { x: -200, y: -200 };
+            }
+
+            if (player.collidesWith(cow)) {
+                cowBubble.pos = { x: cow.pos.x - 50, y: cow.pos.y - 85 };
+            } else {
+                cowBubble.pos = { x: -200, y: -200 };
+            }
+
+            if (player.collidesWith(mary)) {
+                maryBubble.pos = { x: mary.pos.x - 50, y: mary.pos.y - 85 };
+            } else {
+                maryBubble.pos = { x: -200, y: -200 };
+            }
         });
     }
 }
