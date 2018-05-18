@@ -34,9 +34,9 @@ document.onreadystatechange = function () {
         cow.size = { width: 45, height: 45 };
         cow.asset = new PixelJS.AnimatedSprite();
         cow.asset.prepare({
-            name: 'cow.png',
-            frames: 3,
-            rows: 4,
+            name: 'cow4.png',
+            frames: 1,
+            rows: 2,
             speed: 160,
             defaultFrame: 0
         });
@@ -81,11 +81,11 @@ document.onreadystatechange = function () {
         var player = new PixelJS.Player();
         player.addToLayer(playerLayer);
         player.pos = { x: 324, y: 798 };
-        player.size = { width: 32, height: 32 };
+        player.size = { width: 150, height: 150 };
         player.velocity = { x: 375, y: 375 };
         player.asset = new PixelJS.AnimatedSprite();
         player.asset.prepare({
-            name: 'char2.png',
+            name: 'robin-01.png',
             frames: 3,
             rows: 4,
             speed: 100,
@@ -220,15 +220,15 @@ document.onreadystatechange = function () {
             scoreLayer.redraw = true;
             scoreLayer.drawText(
                 'x: ' + Math.round(player.pos.x) + " y:" + Math.round(player.pos.y),
-                50,
-                50,
-                '14pt "Trebuchet MS", Helvetica, sans-serif',
-                '#000000',
+                25,
+                25,
+                '12pt "Trebuchet MS", Helvetica, sans-serif',
+                '#ededed',
                 'left'
             );
         };
 
-        var score = 0;
+        // var score = 0;
         var scoreLayer = game.createLayer("score");
         scoreLayer.static = true;
         game.on('keyDown', showPosition);
@@ -251,12 +251,16 @@ document.onreadystatechange = function () {
                 maryBubble.pos = { x: mary.pos.x - 50, y: mary.pos.y - 185 };
             } else {
                 maryBubble.pos = { x: -200, y: -200 };
+                marySound.pause();
+                marySound.seek(0);
             }
 
             if (player.collidesWith(bounce)) {
                 bounceBubble.pos = { x: bounce.pos.x + 25, y: bounce.pos.y - 55 };
             } else {
                 bounceBubble.pos = { x: -200, y: -200 };
+                bounceSound.pause();
+                bounceSound.seek(0);
             }
         });
     }
